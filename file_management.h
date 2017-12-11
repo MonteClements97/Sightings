@@ -1,8 +1,6 @@
 #ifndef SIGHTINGS_FILE_MANAGEMENT_H
 #define SIGHTINGS_FILE_MANAGEMENT_H
 
-#include "observers.h"
-#include "sightings.h"
 
 FILE * open_file (char observer_or_sighting);
 

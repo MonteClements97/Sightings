@@ -3,7 +3,7 @@
 #include <string.h>
 #include "sightings.h"
 
-sighting * create_sighting(char observer_ID[5], char type_of_mammal, double angle, double distance){
+sighting * create_sighting(char observer_ID[5], char type_of_mammal, double bearing, double distance){
     printf("Inside create sighting\n");
     sighting * new_sighting = malloc(sizeof(sighting));
     if(!new_sighting){
@@ -12,7 +12,7 @@ sighting * create_sighting(char observer_ID[5], char type_of_mammal, double angl
     }
     strcpy(new_sighting->observer_ID, observer_ID);
     new_sighting->type_of_mammal = type_of_mammal;
-    new_sighting->angle = angle;
+    new_sighting->bearing = bearing;
     new_sighting->distance = distance;
     new_sighting->pointer = NULL;
     printf("Created sighting success\n");

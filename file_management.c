@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "observers.h"
+#include "sightings.h"
 #include "file_management.h"
 
 FILE * open_file (char observer_or_sighting){
@@ -56,12 +58,12 @@ sighting * read_sighting_file(FILE * sighting_file){
     head = NULL;
     char observer_ID[5];
     char type_of_mammal;
-    double angle;
+    double bearing;
     double distance;
     int debug_counter = 0;
-    while(fscanf(sighting_file, "%s %c %lf %lf", observer_ID, &type_of_mammal, &angle, &distance) != EOF){
+    while(fscanf(sighting_file, "%s %c %lf %lf", observer_ID, &type_of_mammal, &bearing, &distance) != EOF){
         printf("Just before insert sighting %d\n", debug_counter);
-        sighting * new_sighting = create_sighting(observer_ID, type_of_mammal, angle, distance);
+        sighting * new_sighting = create_sighting(observer_ID, type_of_mammal, bearing, distance);
         head = insert_sighting(head, head, new_sighting);
         debug_counter++;
 

@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "observers.h"
+#include "sightings.h"
 #include "file_management.h"
+#include "conversion_using_math.h"
 
 int main() {
     char * observer_text_file_name = malloc(sizeof(char));
@@ -9,32 +12,34 @@ int main() {
         printf("MEMORY ASSIGNMENT HAS FAILED"); // Checking if memory has been allocated
         exit(2);
     }
-    FILE * observer_text_file = NULL;
-    FILE * sighting_text_file = NULL;
+    FILE * text_file = NULL;
+
 
     do {
         printf("Just before open file function\n");
-        observer_text_file = open_file(1);
+        text_file = open_file(1);
         printf("Just after open file function\n");
-    } while (!observer_text_file);
+    } while (!text_file);
     printf("Just before read observer function\n");
-    observer * the_observers = read_observer_file(observer_text_file);
-    if(fclose(observer_text_file)){
+    observer * the_observers = read_observer_file(text_file);
+    if(fclose(text_file)){
         printf("ERROR CLOSING FILE");
         exit(3);
     }
     do {
-        sighting_text_file = open_file(0);
-    } while(!sighting_text_file);
-    sighting * the_sightings = read_sighting_file(sighting_text_file);
-    if(fclose(sighting_text_file)){
+        text_file = open_file(0);
+    } while(!text_file);
+    sighting * the_sightings = read_sighting_file(text_file);
+    if(fclose(text_file) == EOF){
         printf("ERROR CLOSING FILE");
         exit(3);
     }
+    find_and_store_locations(the_observers, the_sightings);
 
 
 
 
 
-    return 69;
+
+    return 115;
 }
