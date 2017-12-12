@@ -13,6 +13,6 @@ typedef struct s_sighting {
 
 sighting * create_sighting(char observer_ID[5], char type_of_mammal, double bearing, double distance);
 
-sighting * insert_sighting(sighting * head, sighting * current_observer, sighting * observer_to_insert);
+sighting * insert_sighting(sighting * head, sighting * observer_to_insert);
 
 #endif //SIGHTINGS_SIGHTING_H

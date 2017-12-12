@@ -4,7 +4,6 @@
 #include "sightings.h"
 
 sighting * create_sighting(char observer_ID[5], char type_of_mammal, double bearing, double distance){
-    printf("Inside create sighting\n");
     sighting * new_sighting = malloc(sizeof(sighting));
     if(!new_sighting){
         printf("ASSIGNING MEMORY FAILED");
@@ -15,29 +14,13 @@ sighting * create_sighting(char observer_ID[5], char type_of_mammal, double bear
     new_sighting->bearing = bearing;
     new_sighting->distance = distance;
     new_sighting->pointer = NULL;
-    printf("Created sighting success\n");
     return new_sighting;
 }
 
-sighting * insert_sighting(sighting * head, sighting * current_sighting, sighting * sighting_to_insert){
-    printf("Inside insert sighting\n");
+sighting * insert_sighting(sighting * head, sighting * sighting_to_insert){
     if(!head){
-        printf("returned sighting when !head\n");
         return sighting_to_insert;
     }
-    printf("Past head check is null\n");
-    while (current_sighting){
-        printf("Inside while loop\n");
-        if(current_sighting->pointer){
-            printf("Inside if statement\n");
-            current_sighting = current_sighting->pointer;
-            printf("Updated current_sighting\n");
-            continue;
-        }
-
-        current_sighting->pointer = sighting_to_insert;
-        printf("Inserted into linked list\n");
-        return head;
-    }
-    return head;
+    sighting_to_insert->pointer = head;
+    return sighting_to_insert;
 }

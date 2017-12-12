@@ -11,6 +11,6 @@ typedef struct s_observer {
 
 observer * create_observer(char observer_ID[5], double latitude, double longitude);
 
-observer * insert_observer(observer * head, observer * current_observer, observer * observer_to_insert);
+observer * insert_observer(observer * head, observer * observer_to_insert);
 
 #endif //SIGHTINGS_OBSERVERS_H

@@ -33,39 +33,38 @@ FILE * open_file (char observer_or_sighting){
 }
 
 observer * read_observer_file(FILE * observer_file){
-    printf("Inside read observer function\n");
     observer * head = malloc(sizeof(observer));
+    if(!head){
+        printf("ASSIGNING MEMORY FAILED");
+        exit(2);
+    }
     head = NULL;
     char observer_ID[5];
     double latitude;
     double longitude;
     fscanf(observer_file, "%*[^\n]\n");
-    printf("After fcansf inside function\n");
-    int debug_counter = 0;
     while(fscanf(observer_file, "%s %lf %lf", observer_ID, &latitude, &longitude) != EOF){
-        printf("Just before insert observer %d\n", debug_counter);
         observer * new_observer = create_observer(observer_ID, latitude, longitude);
-        head = insert_observer(head, head, new_observer);
-        debug_counter++;
+        head = insert_observer(head, new_observer); //inserts the newly created observer to the front of the list
 
     }
     return head;
 }
 
 sighting * read_sighting_file(FILE * sighting_file){
-    printf("Inside read sighting function\n");
     sighting * head = malloc(sizeof(sighting));
+    if(!head){
+        printf("ASSIGNING MEMORY FAILED");
+        exit(2);
+    }
     head = NULL;
     char observer_ID[5];
     char type_of_mammal;
     double bearing;
     double distance;
-    int debug_counter = 0;
     while(fscanf(sighting_file, "%s %c %lf %lf", observer_ID, &type_of_mammal, &bearing, &distance) != EOF){
-        printf("Just before insert sighting %d\n", debug_counter);
         sighting * new_sighting = create_sighting(observer_ID, type_of_mammal, bearing, distance);
-        head = insert_sighting(head, head, new_sighting);
-        debug_counter++;
+        head = insert_sighting(head, new_sighting); //inserts the newly created sighting to the front of the list
 
     }
     return head;
