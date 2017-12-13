@@ -2,8 +2,8 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-#include "observers.h"
 #include "sightings.h"
+#include "observers.h"
 #include "conversion_using_math.h"
 #define M_PI 3.14159265358979323846  /* pi */
 #define MAXIMUM_LONGITUDE (-4.0)
@@ -12,13 +12,14 @@
 #define MINIMUM_LATITUDE (52.0)
 
 
-
+//checks all sightings and writes their location to file if they are in the sea area
 void find_and_store_locations(observer * observers, sighting * sightings) {
     if (observers && sightings) {
         char file_name[50];
         printf("Please decide what you wish the file to be called: ");
         scanf(" %s", file_name);
         FILE * location_file = fopen(file_name, "w");
+        // checking to see if file has opened correctly
         while(!location_file) {
             printf("ERROR OPENING FILE\n");
             printf("That didn't seem quite right, try again (enter a single q to quit): ");
@@ -29,6 +30,8 @@ void find_and_store_locations(observer * observers, sighting * sightings) {
                 location_file = fopen(file_name, "w");
             }
         }
+        //checks every sighting to determine if the location is within the sea area
+        //writes to file if the sighting is in the sea area
         while(sightings){
             observer *observer_to_work_with = get_observer(observers, sightings);
             if (observer_to_work_with) {
@@ -61,19 +64,8 @@ void find_and_store_locations(observer * observers, sighting * sightings) {
     }
 }
 
-observer * get_observer(observer * observers, sighting * sightings){
-    if(strcmp(observers->observer_ID, sightings->observer_ID)){
-        if(observers->pointer){
-            return get_observer(observers->pointer, sightings);
-        }
-        else{
-            printf("COULD NOT FIND MATCHING OBSERVER\n");
-            return NULL;
-        }
-    }
-    return observers;
-}
 
+//performs maths on to return an array containing the location of the mammal
 double * get_location(double observer_latitude, double observer_longitude, double bearing, double distance){
     double * location = malloc(sizeof(double) * 2);
     if(!location){

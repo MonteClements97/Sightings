@@ -13,4 +13,6 @@ observer * create_observer(char observer_ID[5], double latitude, double longitud
 
 observer * insert_observer(observer * head, observer * observer_to_insert);
 
+observer * get_observer(observer * observers, sighting * sightings);
+
 #endif //SIGHTINGS_OBSERVERS_H

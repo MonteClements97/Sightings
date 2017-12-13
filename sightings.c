@@ -3,6 +3,7 @@
 #include <string.h>
 #include "sightings.h"
 
+//creates a new sighting and returns the sighting
 sighting * create_sighting(char observer_ID[5], char type_of_mammal, double bearing, double distance){
     sighting * new_sighting = malloc(sizeof(sighting));
     if(!new_sighting){
@@ -17,6 +18,7 @@ sighting * create_sighting(char observer_ID[5], char type_of_mammal, double bear
     return new_sighting;
 }
 
+//inserts the new sighting at the start of the linked list
 sighting * insert_sighting(sighting * head, sighting * sighting_to_insert){
     if(!head){
         return sighting_to_insert;

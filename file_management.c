@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "observers.h"
 #include "sightings.h"
+#include "observers.h"
 #include "file_management.h"
+
 
 FILE * open_file (char observer_or_sighting){
     char file_name[50];
@@ -31,7 +32,8 @@ FILE * open_file (char observer_or_sighting){
     } while (!text_file);
     return NULL;
 }
-
+//retrieves the observer id, latitude and longitude from a file given from main
+//creates a linked list based on all the data read from the file
 observer * read_observer_file(FILE * observer_file){
     observer * head = malloc(sizeof(observer));
     if(!head){
@@ -50,7 +52,8 @@ observer * read_observer_file(FILE * observer_file){
     }
     return head;
 }
-
+//retrieves the observer id, type of mammal, bearing and distance from a file given from main
+//creates a linked list based on all the data read from the file
 sighting * read_sighting_file(FILE * sighting_file){
     sighting * head = malloc(sizeof(sighting));
     if(!head){

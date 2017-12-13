@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "observers.h"
 #include "sightings.h"
+#include "observers.h"
 #include "file_management.h"
 #include "conversion_using_math.h"
 
